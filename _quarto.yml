@@ -1,3 +1,27 @@
-# currently a quarto project is required for metadata or brand extensions to work
 project:
-  type: default
+  type: website
+
+callout-appearance: simple
+
+website:
+  title: "Constellate Quarto Extension"
+  page-navigation: true
+  navbar:
+    pinned: false
+
+    right:
+      - text: "Placeholder"
+
+  sidebar:
+    style: "docked"
+    contents:
+      - href: example.qmd
+        text: "Example Page"
+
+format:
+  html:
+    theme:
+      # Will change later
+      light: [cosmo, brand]
+      dark: [cosmo, brand]
+    toc: true

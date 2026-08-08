@@ -1,8 +1,8 @@
 ---
-title: your brand extension
+title: Constellate Quarto extension
 ---
 
-# brand.yml extension
+# Header 1
 
 Here is some inline code: `def foo(x): return x`{.python} and `y`{.python} and `z`{.python}.
 
@@ -24,3 +24,17 @@ fibonacci <- function(n) {
   }
 }
 ```
+
+## Heading 2
+
+::: {.callout-note title="Callout note test"}
+
+Some main body content here.
+
+:::
+
+::: {.callout-warning title="Callout warning test"}
+
+Some main body content here.
+
+:::
