@@ -22,6 +22,6 @@ format:
   html:
     theme:
       # Will change later
-      light: [cosmo, brand]
-      dark: [cosmo, brand]
+      light: [flatly, brand]
+      dark: [darkly, brand]
     toc: true
