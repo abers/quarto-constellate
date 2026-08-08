@@ -1,13 +1,13 @@
-# Quarto-constellate Extension For Quarto
+# Constellate Extension For Quarto
 
-_TODO_: Add a short description of your extension.
+Personal Quarto brand and theming extension. [Catppuccin](https://catppuccin.com/) is used for the colour scheme.
 
 ## Installing
 
-_TODO_: Replace the `<github-organization>` with your GitHub organization.
+To install:
 
 ```bash
-quarto add <github-organization>/quarto-constellate
+quarto add abers/quarto-constellate
 ```
 
 This will install the extension under the `_extensions` subdirectory.
@@ -15,9 +15,8 @@ If you're using version control, you will want to check in this directory.
 
 ## Using
 
-This extension installs a [brand.yml](https://posit-dev.github.io/brand-yml/) configuration for _your organization name_.
+This extension installs a [brand.yml](https://posit-dev.github.io/brand-yml/) configuration and additional theming for my personal Quarto based projects.
 
 ## Example
 
 Here is the source code for a minimal example: [example.qmd](example.qmd).
-
