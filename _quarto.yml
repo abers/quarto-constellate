@@ -4,7 +4,7 @@ project:
 callout-appearance: simple
 
 website:
-  title: "Constellate Quarto Extension"
+  title: "Constellate"
   page-navigation: true
   navbar:
     pinned: false
@@ -13,7 +13,7 @@ website:
       - text: "Placeholder"
 
   sidebar:
-    style: "docked"
+    style: "floating"
     contents:
       - href: example.qmd
         text: "Example Page"
