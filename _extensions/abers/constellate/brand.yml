@@ -153,14 +153,28 @@ color:
 
 typography:
   fonts:
-    - family: Volkhov
-      source: bunny
-    - family: Roboto Slab
-      source: bunny
-    - family: Open Sans
-      source: bunny
-    - family: Inconsolata
-      source: bunny
-  base: Open Sans
-  headings: Roboto Slab
+  - family: Open Sans
+    source: bunny
+  - family: Overpass
+    source: bunny
+    weight:
+    - 400
+    - 600
+    - 700
+  - family: Inconsolata
+    source: bunny
+  - family: Roboto Slab
+    source: bunny
+    weight:
+    - 400
+    - 600
+    - 700
+    style: normal
+  base:
+    family: Open Sans
+  headings: Overpass
   monospace: Inconsolata
+defaults:
+  bootstrap:
+    defaults:
+      constellate-page-title-font: '"Roboto Slab"'

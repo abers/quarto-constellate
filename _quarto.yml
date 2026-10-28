@@ -1,27 +1,15 @@
 project:
   type: website
 
-callout-appearance: simple
+profile:
+  default: navbar
+
+callout-appearance: default
 
 website:
   title: "Constellate"
   page-navigation: true
-  navbar:
-    pinned: false
+  page-footer:
+    center: "Test"
 
-    right:
-      - text: "Placeholder"
-
-  sidebar:
-    style: "floating"
-    contents:
-      - href: example.qmd
-        text: "Example Page"
-
-format:
-  html:
-    theme:
-      # Will change later
-      light: [flatly, brand]
-      dark: [darkly, brand]
-    toc: true
+format: constellate-html

@@ -1,0 +1,27 @@
+website:
+  navbar:
+    pinned: false
+
+    right:
+      - href: example2.qmd
+        text: "Example 2"
+      - href: slides-light.qmd
+        text: "Slides (light)"
+        target: _blank
+      - href: slides-dark.qmd
+        text: "Slides (dark)"
+        target: _blank
+
+  sidebar:
+    - id: example2-sidebar
+      title: "Example 2"
+      style: "floating"
+      contents:
+        - href: example2.qmd
+          text: "Example 2"
+        - href: example.qmd
+          text: "Other example"
+        - text: "Section pages"
+        - text: "Placeholder"
+        - text: "Another placeholder"
+        - text: "Et cetera"

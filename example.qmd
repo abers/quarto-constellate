@@ -1,16 +1,17 @@
 ---
-title: Constellate Quarto extension
+title: "Example Page"
 ---
 
-# Header 1
+## Heading 2
 
-Here is some inline code: `def foo(x): return x`{.python} and `y`{.python} and `z`{.python}.
+Here is some inline code: `def foo(x): return x`{.python} and `y`{.python} and
+`z`{.python}.
 
 Here is [a link](https://example.com).
 
 Here is a code block:
 
-```{.r}
+```r
 # | echo: true
 fibonacci <- function(n) {
   if (n <= 0) {
@@ -25,16 +26,55 @@ fibonacci <- function(n) {
 }
 ```
 
+> And a quote block
+
 ## Heading 2
 
 ::: {.callout-note title="Callout note test"}
-
 Some main body content here.
-
 :::
 
 ::: {.callout-warning title="Callout warning test"}
+Some main body content here.
+:::
 
+## Heading 2
+
+::: {.callout-note title="Callout note test"}
+Some main body content here.
+:::
+
+::: {.callout-warning title="Callout warning test"}
 Some main body content here.
 
+Sapiente et et qui. Error officia reprehenderit enim. Blanditiis ut quidem sequi
+laudantium veniam quas dolore ut. Totam explicabo autem nesciunt consequuntur
+voluptas saepe et similique.
+
+Dicta velit eos delectus modi ut eaque. Enim nisi quisquam consequatur. Voluptas
+in tenetur sed. Corrupti enim qui accusamus beatae laudantium repudiandae iste
+consequatur.
 :::
+
+## Lorem
+
+Doloremque facere qui in voluptatem doloribus iure aut itaque. Harum libero
+consequatur ex in omnis aut doloremque. Non voluptas quo omnis recusandae.
+Provident voluptate quod deleniti.
+
+Sapiente et et qui. Error officia reprehenderit enim. Blanditiis ut quidem sequi
+laudantium veniam quas dolore ut. Totam explicabo autem nesciunt consequuntur
+voluptas saepe et similique.
+
+Dicta velit eos delectus modi ut eaque. Enim nisi quisquam consequatur. Voluptas
+in tenetur sed. Corrupti enim qui accusamus beatae laudantium repudiandae iste
+consequatur.
+
+Laudantium delectus expedita maiores numquam perferendis culpa. Rerum itaque
+nisi dignissimos distinctio minima consectetur. Repellendus et tenetur aut aut
+rem magni eius et. Repudiandae deserunt non a impedit quidem. Assumenda cumque
+aut rerum hic qui. Nemo eos ducimus aut.
+
+Ipsum quis vel reiciendis voluptate. Est quam quo eligendi qui sit voluptatem.
+Perspiciatis voluptas voluptas consequatur voluptas nisi odit. Ut dolor
+repellendus adipisci.

@@ -1,0 +1,30 @@
+---
+title: "Short page example"
+date: "2026/07/10"
+categories:
+  - examples
+  - tests
+---
+
+> Quia atque nostrum facere rerum fugit. Ut impedit id eveniet nam aspernatur.
+> Est et adipisci rem eaque quis.
+>
+> - **Lorem Ipsum** (1501) *"Dolor Sit Amet"*
+
+### Default
+
+::: {.callout-caution title="Callout caution test"}
+Some main body content here.
+:::
+
+### Simple
+
+::: {.callout-tip appearance="simple" title="Callout tip test"}
+Some main body content here.
+:::
+
+### Minimal
+
+::: {.callout-important appearance="minimal"}
+**Important**: Some main body content here.
+:::

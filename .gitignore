@@ -3,6 +3,8 @@
 *_files/
 /.quarto/
 /_site/
+/_site-navbar-sidebar/
+/_site-sidebar/
 
 **/*.quarto_ipynb
 **/*.otter.*

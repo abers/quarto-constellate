@@ -1,0 +1,37 @@
+project:
+  output-dir: _site-sidebar
+
+sidebar: main-sidebar
+
+website:
+  navbar: false
+  sidebar:
+    id: main-sidebar
+    title: Constellate
+    style: docked
+    border: false
+    search: true
+    collapse-level: 1
+    contents:
+      - href: blog-example.qmd
+        text: Blog
+      - section: Examples
+        contents:
+          - href: example.qmd
+            text: Example
+          - href: example2.qmd
+            text: Example 2
+          - href: example3.qmd
+            text: Example 3
+      - section: Presentations
+        contents:
+          - href: slides-light.qmd
+            text: Slides (light)
+            target: _blank
+          - href: slides-dark.qmd
+            text: Slides (dark)
+            target: _blank
+
+constellate:
+  sidebar:
+    grouped: true
