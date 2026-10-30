@@ -1,4 +1,5 @@
 *.html
+!/_extensions/abers/constellate/templates/*.html
 *.pdf
 *_files/
 /.quarto/
