@@ -199,14 +199,8 @@ $grid-docked-wide-full-body: clamp(
         grid-column: screen-start / body-start;
         grid-row: var(--constellate-sidebar-start) / page-bottom;
         background: var(--constellate-sidebar-background);
-        @if $sidebar-border {
-          border-right: 1px solid $table-border-color;
-        }
         pointer-events: none;
         z-index: 1;
-      }
-      #quarto-sidebar {
-        border-right: none !important;
       }
       > footer.footer {
         grid-column: screen-start / screen-end;
@@ -296,3 +290,106 @@ $grid-docked-wide-full-body: clamp(
     @include page-columns-float-mid;
   }
 }
+
+body.landing {
+  --landing-width: 64rem;
+  --landing-inset: clamp(1rem, 3vw, 2rem);
+  --landing-start: screen-start;
+  --landing-end: screen-end;
+  --landing-gap: 2rem;
+  --landing-content-width: min(
+    calc(100% - 2 * var(--landing-inset)),
+    calc(var(--landing-width) - 2 * var(--landing-inset))
+  );
+  background-color: $ctp-base;
+}
+
+body.landing #quarto-document-content {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: screen-start / screen-end;
+  row-gap: var(--landing-gap);
+  min-inline-size: 0;
+  margin-block: 0;
+  padding: 2rem 0;
+}
+
+body.landing main.content > :where(:not(.page-full, [class^="column-"], [class*=" column-"], aside)),
+body.landing #quarto-document-content .page-full:has(.wide.column-body-outset)
+  > :where(:not(.page-full, [class^="column-"], [class*=" column-"], aside)) {
+  grid-column: var(--landing-start) / var(--landing-end);
+  justify-self: center;
+  min-inline-size: 0;
+  inline-size: var(--landing-content-width);
+}
+
+body.landing main.content > * {
+  margin-block: 0;
+}
+
+body.landing #title-block-header,
+body.no-footer > footer.footer {
+  display: none;
+}
+
+@include media-breakpoint-up(lg) {
+  body.landing:has(#quarto-sidebar.docked) {
+    --landing-start: body-start;
+  }
+}
+
+#quarto-document-content.page-columns:has(.wide.column-body-outset),
+#quarto-document-content .page-columns:has(.wide.column-body-outset) {
+  grid-template-columns: subgrid;
+  min-inline-size: 0;
+  > :not(.page-full, [class^="column-"], [class*=" column-"], aside) {
+    margin-inline: var(--wide-flow-inset, 0px);
+  }
+}
+#quarto-document-content .wide.column-body-outset {
+  grid-column: body-start / body-end;
+  justify-self: center;
+  inline-size: 100%;
+  max-inline-size: 64rem;
+}
+#quarto-content > #quarto-document-content.quarto-banner-title-block:has(.wide.column-body-outset) {
+  --wide-flow-inset: var(--constellate-article-inline-padding);
+  --constellate-article-flow-padding: 0px;
+  background-color: transparent;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    grid-column: var(--wide-content-start, body-content-start) / var(--wide-content-end, body-content-end);
+    inset: 0;
+    background-color: var(--constellate-article-background);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+body.landing {
+  #quarto-document-content .wide.column-body-outset {
+    grid-column: var(--landing-start) / var(--landing-end);
+    inline-size: var(--landing-content-width);
+    max-inline-size: none;
+  }
+}
+@include media-breakpoint-down(md) {
+  #quarto-document-content .wide.column-body-outset {
+    grid-column: screen-start / screen-end;
+    max-inline-size: none;
+  }
+  #quarto-document-content.quarto-banner-title-block:has(.wide.column-body-outset) {
+    --wide-content-start: screen-start;
+    --wide-content-end: screen-end;
+  }
+}
+@include media-breakpoint-down(lg) {
+  body.landing #quarto-document-content .wide.column-body-outset {
+    inline-size: 100%;
+    padding-inline: var(--landing-inset);
+  }
+}
+
+@import "content-layout";

@@ -122,15 +122,10 @@ pre > code.sourceCode {
     --bs-alert-bg: #{map.get($colours, "body-bg")};
     --bs-alert-link-color: #{map.get($colours, "link")};
 
+    @include constellate-prose-roles(map.get($colours, "link"), map.get($colours, "visited"), map.get($colours, "hover"));
+
     a:not(.btn) {
-      color: map.get($colours, "link");
-      &:visited {
-        color: map.get($colours, "visited");
-      }
-      &:hover,
-      &:focus-visible {
-        color: map.get($colours, "hover");
-      }
+      @include constellate-prose-states(map.get($colours, "link"), map.get($colours, "visited"), map.get($colours, "hover"), ':hover, :focus-visible');
     }
   }
 }
@@ -152,15 +147,15 @@ pre > code.sourceCode {
   --text_input: #{$ctp-text};
 }
 
-:is(.webex-question, .webex-radiogroup, .webex-checkboxgroup)
-  a:where(:not(.anchorjs-link, .btn)) {
+:is(.webex-question, .webex-radiogroup, .webex-checkboxgroup) {
   $quiz-links: map.get($constellate-callout-colors, "tip");
-  color: mode($constellate-link-on-shade, map.get($quiz-links, "link"));
-  &:visited {
-    color: mode($constellate-visited-on-shade, map.get($quiz-links, "visited"));
-  }
-  &:is(:hover, :focus-visible) {
-    color: mode($constellate-sapphire-on-shade, map.get($quiz-links, "hover"));
+  $link: mode($constellate-link-on-shade, map.get($quiz-links, "link"));
+  $visited: mode($constellate-visited-on-shade, map.get($quiz-links, "visited"));
+  $interaction: mode($constellate-sapphire-on-shade, map.get($quiz-links, "hover"));
+  @include constellate-prose-roles($link, $visited, $interaction);
+
+  a:where(:not(.anchorjs-link, .btn)) {
+    @include constellate-prose-states($link, $visited, $interaction, ':hover, :focus-visible');
   }
 }
 

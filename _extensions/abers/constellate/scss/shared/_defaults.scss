@@ -28,3 +28,6 @@ $constellate-image-border-color: mode(
   color.scale($ctp-text, $lightness: -25%),
   color.scale($ctp-crust, $lightness: -25%)
 ) !default;
+
+$code-annotation-higlight-bg: $ctp-base !default;
+$code-annotation-higlight-color: mode($ctp-overlay2, $ctp-overlay1) !default;

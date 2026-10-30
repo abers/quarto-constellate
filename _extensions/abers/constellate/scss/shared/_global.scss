@@ -13,3 +13,7 @@ ul.task-list input[type="checkbox"] {
   outline: $focus-ring-width solid $constellate-focus-color;
   outline-offset: $focus-ring-width;
 }
+
+:where(.panel-tabset [role="tab"]) {
+  @include constellate-code-roles($code-block-bg, $ctp-text, $ctp-text);
+}

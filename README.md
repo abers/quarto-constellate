@@ -180,13 +180,23 @@ A custom div exists for whether images with options for if to use rounded corner
 
 ## Shortcodes
 
-Currently there is only one shortcode:
+This produces a "Made with Quarto" and "Colour scheme Catppuccin" acknowledgements with logos and links:
 
 ```markdown
 {{< constell-made-with >}}
 ```
 
-This produces a "Made with Quarto" and "Colour scheme Catppuccin" acknowledgements with logos and links.
+And for Creative Commons BY-SA:
+
+```markdown
+{{< cc-by-sa >}}
+```
+
+And to use the above acknowledgements + license together on closing slides:
+
+```
+{{< closing-slide >}}
+```
 
 ## Extension classes
 
@@ -343,7 +353,172 @@ And then add to `_quarto.yml`:
 ```yml
 website:
   page-footer:
-    left: "Made with {{< fa brands r-project >}} and [![Quarto](/_extensions/abers/constellate/assets/quarto-logo.svg){height=1em} Quarto](https://quarto.org)"
-    center: "Licensed under {{< fa brands creative-commons >}} {{< fa brands creative-commons-by >}} {{< fa brands creative-commons-sa >}} [Creative Commons BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)"
+    left: "Made with [{{< fa brands r-project label="R" >}}](https://www.r-project.org/){.linked-icon} and [![Quarto](/_extensions/abers/constellate/assets/quarto-logo.svg){height=1em} Quarto](https://quarto.org)"
+    center: "{{< ca-by-sa >}}"
     right: "Colour scheme [![Catppuccin](/_extensions/abers/constellate/assets/cat-logo.png){height=1em} Catppuccin](https://catppuccin.com/palette/)"
+```
+
+## Landing pages
+
+To create wider layout landing pages:
+
+```yml
+page-layout: full
+toc: false
+title-block-banner: false
+body-classes: landing
+```
+
+For docked sidebars the footer can look awkward thus:
+
+```yml
+body-classes: landing no-footer
+```
+
+## Course info
+
+**WARNING**: Components covered from here onwards have undergone initial code review and refactoring to remove any obvious egregious slop, but due to time less so than the above. The end user use will remain the same, though will require more refactoring - and rewriting - to fully de-slop it and bring it up to human maintainable standards.
+
+The initial landing page work for university courses provides:
+
+```markdown
+{{< course-heading >}}
+```
+
+One way to set this up is using a `_course.yml` with:
+
+```yml
+course:
+  title:
+  subtitle:
+  code:
+```
+
+(note to self for consistency) and can include other info such as:
+
+```yml
+course:
+  moodle:
+  staff:
+    short-name:
+      name:
+      role:
+      job-title:
+      email:
+    another-name:
+      name:
+      role:
+      job-title:
+      email:
+```
+
+Then load this via `_quarto.yml`:
+
+```yml
+metadata-files: [_course.yml]
+```
+
+Then have access to metadata shortcodes such as `{{< meta course.staff.short-name.email >}}` and `{{< meta course.moodle >}}`.
+
+Alternatively, the course heading block can be more manually recreated via:
+
+```markdown
+::: {.course-heading}
+
+# Course Title
+
+[Course Subtitle]{.subtitle}
+
+[COURSE CODE]{.course-code}
+:::
+```
+
+## Splits and content columns
+
+`.split` creates a `.split-left` and `.split-right` for HTML pages. The default is for the left side to be large and on narrow screens to be placed above the content on the right. This can be customised when declaring the split:
+
+```markdown
+:::: {.split larger=right narrow-first=right}
+```
+
+TODO: Add % for split similar to Quarto columns.
+
+This split at present is primarily used for landing pages, such as:
+
+```markdown
+:::: {.split .align-items-center narrow-first=right}
+::: {.split-left}
+{{< course-heading >}}
+:::
+::: {.split-right .text-center}
+![](images/course-logo.png){width=100% style="max-width:26rem" fig-alt="Course logo"}
+:::
+::::
+```
+
+The `.align-items center` and `max-width` are optional based on image size - as the image resizes responsively where the course info content can look awkward with larger images without these adjustments.
+
+## Buttons
+
+In addition to regular `.button` there is also `.button .external` with distinct styling for external links. By default this is 'link blue' with an external-link icon indicator.
+
+A div is also provided to create a 'button row', again useful for landing pages:
+
+```{.button-row}
+
+[Course information](information.qmd){.button}
+
+[Course Moodle]({{< meta course.moodle >}}){.button .external target="_blank"}
+
+```
+
+Buttons will appear alongside each other and wrap when needed.
+
+## Surfaces
+
+Surfaces provide way to either individually declare or configure boxes for content with different coloured background and optional title and icon. This provides a more regular sized main content compared to callouts for asides and additional information.
+
+For individual surfaces:
+
+```markdown
+::: {.surface colour=COLOUR title="Optional Title"}
+
+:::
+```
+
+Colour options are: `flamingo`, `pink`, `mauve`, `red`, `maroon`, `peach`, `yellow`, `green`, `teal`, `sky`, `sapphire`, `blue`, `lavender`, `crust`, `mantle`, `base`, `surface0`, `surface1`, and `surface2`
+
+It is also possible to specify a `blend=#` to blend the colour with the regular background colour.
+
+For reuseable configured surfaces and adding icons to these, add definitions to `_quarto.yml`:
+
+```yml
+surfaces:
+  assessments:
+    colour: blue
+    title: Assessments
+    icon: "{{< fa clipboard-check >}}"
+  instructions:
+    colour: surface0
+    blend: 50
+```
+
+In use, these then provide similar options as callouts:
+
+```markdown
+::: {.surface-assessments}
+
+:::
+
+::: {.surface-assessments title="Alternative Title" icon=false}
+
+:::
+```
+
+Call also pass `title=""` to create a surface without a title.
+
+Within RevealJS these also provide a way to theme the whole slide based on the defined surface:
+
+```markdown
+## Assessment 1 {.surface-assessments}
 ```

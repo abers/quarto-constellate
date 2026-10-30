@@ -35,7 +35,9 @@ SOFTWARE.
 The three complete SVG data URLs in `scss/_revealjs-menu.scss` (images, gear
 and x) are copied from Quarto 1.8.25's
 `formats/revealjs/plugins/menu/quarto-menu.css`, which uses Bootstrap Icons.
-The extension uses those SVGs as masks instead of background images.
+The box-arrow-up-right drawing in `scss/_html-buttons.scss` is copied from
+Quarto 1.10.19's `formats/html/_quarto-rules-link-external.scss`.
+The extension uses these SVGs as masks instead of background images.
 
 Copyright (c) 2020-2024 Posit Software, PBC.
 
@@ -57,16 +59,16 @@ The MIT licence printed above also applies to these files. Their existing
 copyright and SPDX metadata are retained.
 [Upstream template](https://github.com/catppuccin/ksyntaxhighlighting/blob/main/ksyntaxhighlighting.tera).
 
-## Quarto title templates
-
-The title-slide partials are adapted from Quarto CLI templates, covered by the
-Posit copyright and MIT licence above.
-
 ## Catppuccin logo
 
 `assets/cat-logo.png` is the official
 [Catppuccin circle logo](https://github.com/catppuccin/catppuccin/blob/main/assets/logos/exports/1544x1544_circle.png).
 Copyright (c) 2021 Catppuccin. The MIT licence above applies to this asset.
+
+## Quarto title templates
+
+The title-slide partials are adapted from Quarto CLI templates, covered by the
+Posit copyright and MIT licence above.
 
 ## exams2forms browser assets
 

@@ -8,7 +8,11 @@ contributes:
       brand: brand.yml
   formats:
     html:
+      shortcodes:
+        - shortcodes/course-heading.lua
       filters:
+        - at: pre-quarto
+          path: filters/html-components.lua
         - filters/website.lua
         - filters/slide-links.lua
       template-partials:
@@ -51,6 +55,8 @@ contributes:
         - at: pre-ast
           path: filters/mermaid.lua
         - filters/quote-attribution.lua
+        - at: pre-quarto
+          path: filters/surfaces.lua
       shortcodes:
         - shortcodes/made-with.lua
     revealjs:

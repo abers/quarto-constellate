@@ -70,7 +70,7 @@
   }
 
   .panel-tabset [role="tab"]:any-link {
-    color: $ctp-text;
+    color: inherit;
     font-family: $font-family-base;
     font-weight: 600;
   }
@@ -82,11 +82,13 @@
   }
 
   code:not(pre code) {
-    color: $ctp-text;
-    background-color: $code-block-bg;
+    color: var(--constellate-code-ink, #{$ctp-text});
+    background-color: var(--constellate-code-background, #{$code-block-bg});
     padding: 0.2em;
     border-radius: 5px;
   }
+
+  a code:not(pre code) { color: var(--constellate-linked-code-ink, #{$ctp-text}); }
 
   mark,
   span.mark {
@@ -181,4 +183,9 @@
     gap: 5em;
     text-align: center;
   }
+}
+
+a.linked-icon:any-link {
+  --constellate-prose-interaction: var(--constellate-linked-icon-interaction, #{$ctp-sapphire});
+  @include constellate-prose-states($ctp-blue, $ctp-mauve, $ctp-sapphire);
 }

@@ -83,11 +83,6 @@ $danger: $ctp-red;
 
 $link-hover-color: $ctp-sky;
 
-// Code annotations
-
-$code-annotation-higlight-color: rgba($ctp-overlay2, 0.27) !default;
-$code-annotation-higlight-bg: rgba($ctp-overlay2, 0.13) !default;
-
 // On this page
 
 $toc-active-border: $primary !default;
@@ -108,6 +103,8 @@ $navbar-brand: $ctp-pink;
 $navbar-brand-hl: $ctp-sky;
 
 // Sidebar
+
+$sidebar-border: false;
 
 $sidebar-fg: $ctp-text !default;
 $sidebar-hover-color: $ctp-sky;
@@ -186,6 +183,7 @@ $h2-font-size: 2.5rem !default;
 $h3-font-size: 2rem !default;
 
 /*-- scss:rules --*/
+@import "shared/prose";
 
 // Hero + 'page' style main content
 
@@ -269,9 +267,12 @@ body:has(#title-block-header .quarto-title-banner) {
   margin-top: 0;
   margin-bottom: 1rem;
 
-  padding: 1.25rem var(--article-padding);
+  --constellate-article-inline-padding: var(--article-padding);
+  --constellate-article-background: #{$ctp-base};
 
-  background-color: $ctp-base;
+  padding: 1.25rem var(--constellate-article-flow-padding, var(--constellate-article-inline-padding));
+
+  background-color: var(--constellate-article-background);
   color: $ctp-text;
 
   > section:first-of-type > :is(h1, h2, h3, h4):first-child {
@@ -353,7 +354,8 @@ body:has(#title-block-header .quarto-title-banner) {
 
     margin-inline: 0;
 
-    padding: 1.25rem $grid-column-gutter-width;
+    --constellate-article-inline-padding: #{$grid-column-gutter-width};
+    padding: 1.25rem var(--constellate-article-flow-padding, var(--constellate-article-inline-padding));
 
     border-radius: 0;
     box-shadow: none;
@@ -368,16 +370,22 @@ body:has(#title-block-header .quarto-title-banner) {
   color: $ctp-mauve;
 }
 
+.nav-footer {
+  @include constellate-prose-roles(mode($blue-700, $ctp-blue), mode($purple-600, $ctp-mauve), $ctp-sapphire);
+}
 
-:where(#quarto-document-content) :where(.card, #quarto-appendix) a:not(.anchorjs-link, .btn),
-:is(body, #quarto-document-content) .tippy-box[data-theme~="quarto"] a {
-  color: $constellate-link-on-shade;
-  &:visited {
-    color: $constellate-visited-on-shade;
-  }
-  &:is(:hover, :focus-visible) {
-    color: $constellate-sapphire-on-shade;
-  }
+:where(#quarto-document-content) :where(.card, .quarto-grid-item, #quarto-appendix.default) {
+  @include constellate-prose-roles($constellate-link-on-shade, $constellate-visited-on-shade, $constellate-sapphire-on-shade);
+  @include constellate-code-roles($code-block-bg, $ctp-text);
+}
+.tippy-box[data-theme~="quarto"] {
+  @include constellate-prose-roles($constellate-link-on-shade, $constellate-visited-on-shade, $constellate-sapphire-on-shade);
+  @include constellate-code-roles($code-bg, $code-color, $code-color);
+}
+
+:where(#quarto-document-content) :where(.card, #quarto-appendix) #{$constellate-prose-anchor}:any-link,
+:is(body, #quarto-document-content) .tippy-box[data-theme~="quarto"] #{$constellate-prose-anchor}:any-link {
+  @include constellate-prose-states($constellate-link-on-shade, $constellate-visited-on-shade, $constellate-sapphire-on-shade, ':hover, :focus-visible');
 }
 
 // Catppuccin recommends Overlay2 at 20-30% opacity for selections
@@ -400,6 +408,10 @@ kbd,
   --bs-btn-focus-box-shadow: #{$focus-ring-box-shadow};
 }
 
+:where(.btn) {
+  @include constellate-code-roles($code-block-bg, $ctp-text, $ctp-text);
+}
+
 :is(.code-copy-button, .navbar-toggler):focus-visible {
   outline: 0;
   box-shadow: $focus-ring-box-shadow;
@@ -420,6 +432,8 @@ dl.code-annotation-container-grid dt {
 @import "shared/components";
 @import "shared/utilities";
 @import "shared/global";
+@import "shared/surfaces";
+@import "html-buttons";
 @import "activities";
 #quarto-document-content {
   @include constellate-components($paragraph-margin-bottom);
@@ -537,4 +551,21 @@ body #quarto-back-to-top {
     color: $constellate-sapphire-on-shade;
     border-color: $constellate-sapphire-on-shade;
   }
+}
+
+.code-copy-outer-scaffold:has(pre.code-annotated) > .code-copy-button {
+  font-size: $code-block-font-size;
+  margin-right: calc(0.5em + 25px);
+  margin-top: 0;
+  padding-bottom: 0;
+  padding-top: 3px;
+}
+
+main#quarto-document-content {
+  --surface-canvas: var(--constellate-article-background, var(--surface-base));
+}
+
+#quarto-document-content #{$constellate-contextual-prose-anchor},
+.nav-footer #{$constellate-prose-anchor}:any-link {
+  @include constellate-prose-states($ctp-blue, $ctp-mauve, $ctp-sapphire);
 }
