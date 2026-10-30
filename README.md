@@ -458,6 +458,19 @@ This split at present is primarily used for landing pages, such as:
 
 The `.align-items center` and `max-width` are optional based on image size - as the image resizes responsively where the course info content can look awkward with larger images without these adjustments.
 
+An additional `.content-columns` exists for creating responsive columns of content:
+
+```
+:::: {.content-columns}
+::: {title="Title" icon="[]{.bi .bi-...}"}
+
+:::
+::: {title="Title 2" icon="[]{.bi .bi-...}"}
+
+:::
+::::
+```
+
 ## Buttons
 
 In addition to regular `.button` there is also `.button .external` with distinct styling for external links. By default this is 'link blue' with an external-link icon indicator.
