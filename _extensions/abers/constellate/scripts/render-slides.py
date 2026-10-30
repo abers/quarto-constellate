@@ -56,6 +56,7 @@ def render(root, record, variant, profiles, output_dir, embed_resources=False):
     args = [
         "render",
         source.name,
+        "--no-clean",
         "--to",
         SLIDE_FORMAT,
         "--output-dir",
@@ -65,9 +66,7 @@ def render(root, record, variant, profiles, output_dir, embed_resources=False):
         args.append("--embed-resources")
     selected = ([LIGHT_PROFILE] if variant == "light" else []) + profiles
     args.extend(["--profile", ",".join(selected)])
-    print(
-        f"Slides: {variant} {record['source']} -> {record[variant]}", flush=True
-    )
+    print(f"Slides: {variant} {record['source']} -> {record[variant]}", flush=True)
     env = os.environ.copy()
     env.pop("QUARTO_PROJECT_RENDER_ALL", None)
     output_file = os.path.relpath(record[variant], Path(record["source"]).parent)
@@ -85,16 +84,25 @@ def write_manifest(output_dir, records):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
-        "sources", nargs="*", help="QMD files, or omit for all inputs in the slides profile"
+        "sources",
+        nargs="*",
+        help="QMD files, or omit for all inputs in the slides profile",
     )
     parser.add_argument("--post-render", action="store_true")
-    parser.add_argument("--output-dir", help="Directory for both dark and light slide files")
-    parser.add_argument("--embed-resources", action="store_true",
-                        help="Embed resources in each exported slide HTML file")
+    parser.add_argument(
+        "--output-dir", help="Directory for both dark and light slide files"
+    )
+    parser.add_argument(
+        "--embed-resources",
+        action="store_true",
+        help="Embed resources in each exported slide HTML file",
+    )
     options = parser.parse_args()
     if options.post_render and os.environ.get("QUARTO_PROJECT_RENDER_ALL") != "1":
         return
-    if options.post_render and LIGHT_PROFILE in os.environ.get("QUARTO_PROFILE", "").split(","):
+    if options.post_render and LIGHT_PROFILE in os.environ.get(
+        "QUARTO_PROFILE", ""
+    ).split(","):
         return
     profiles = active_profiles()
     profiles = [SLIDES_PROFILE] + [p for p in profiles if p != SLIDES_PROFILE]
